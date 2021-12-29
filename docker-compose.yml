@@ -1,0 +1,141 @@
+version: '3'
+services:
+  jvs-mysql:
+    image: mysql:5.7
+    container_name: jvs-mysql
+    volumes:
+      - ./data/mysql/:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d
+    # 挂载配置文件目录
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_HOST=%
+      - TZ=Asia/Shanghai
+    ports:
+      - "3306:3306"
+    restart: always
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci  --lower_case_table_names=1 --max_connections=1024
+    networks:
+      - jvs
+  jvs-nacos:
+    image: nacos/nacos-server:2.0.0
+    container_name: jvs-nacos
+    environment:
+      - MODE=standalone
+      - MYSQL_SERVICE_DB_NAME=nacos
+      - MYSQL_SERVICE_HOST=jvs-mysql
+      - MYSQL_SERVICE_PASSWORD=root
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - NACOS_APPLICATION_PORT=8848
+      - PREFER_HOST_MODE=hostname
+      - SPRING_DATASOURCE_PLATFORM=mysql
+    restart: always
+    ports:
+      - "8848:8848"
+    networks:
+      - jvs
+
+  #文件服务器需要
+  jvs-minio:
+    image: minio/minio
+    container_name: jvs-minio
+    environment:
+      - MINIO_ROOT_USER=miniominio
+      - MINIO_ROOT_PASSWORD=miniominio
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data/minio/:/data
+    ports:
+      - 9000:9000
+      - 9001:9001
+    command: server /data --console-address ':9001'
+    networks:
+      - jvs
+
+  #缓存
+  jvs-redis:
+    container_name: jvs-redis
+    image: redis:5.0.8
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - jvs
+  #文件存储
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.4.2
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data/elasticsearch/:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - jvs
+  #网关服务器，所有接口调用的入口
+  gateway:
+    restart: always
+    container_name: gateway
+    image: 0glg0/jvs-gateway:${JVSVERSION}
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    ports:
+      - 10000:10000
+    networks:
+      - jvs
+  #用户管理
+  jvs-auth-mgr:
+    restart: always
+    image: 0glg0/jvs-auth-mgr:${JVSVERSION}
+    container_name: jvs-auth-mgr
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    networks:
+      - jvs
+  #授权认证
+  jvs-auth:
+    restart: always
+    image: 0glg0/jvs-auth:${JVSVERSION}
+    container_name: jvs-auth
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    networks:
+      - jvs
+  #后台管理
+  jvs-ui:
+    restart: always
+    image: 0glg0/jvs-ui:${JVSVERSION}
+    container_name: jvs-ui
+    networks:
+      - jvs
+    ports:
+      - 80:80
+
+  #添加企业知识库
+  jvs-apply-document:
+    restart: always
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    image: 0glg0/document-mgr:${JVSVERSION}
+    container_name: jvs-apply-document
+    networks:
+      - jvs
+  #企业知识库前端
+  jvs-knowledge-ui:
+    restart: always
+    image: 0glg0/jvs-knowledge-ui:${JVSVERSION}
+    container_name: jvs-knowledge-ui
+    networks:
+      - jvs
+    ports:
+      - 8080:80
+
+#桥接网络
+networks:
+  jvs:
+    driver: bridge
