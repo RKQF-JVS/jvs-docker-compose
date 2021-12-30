@@ -88,6 +88,10 @@ services:
       - 10000:10000
     networks:
       - jvs
+    depends_on:
+      - jvs-redis
+      - jvs-mysql
+
   #用户管理
   jvs-auth-mgr:
     restart: always
@@ -97,6 +101,10 @@ services:
       - ./data/nacos/:/root/nacos/config
     networks:
       - jvs
+    depends_on:
+      - jvs-redis
+      - jvs-mysql
+      - gateway
   #授权认证
   jvs-auth:
     restart: always
@@ -106,6 +114,10 @@ services:
       - ./data/nacos/:/root/nacos/config
     networks:
       - jvs
+    depends_on:
+      - jvs-redis
+      - jvs-mysql
+      - gateway
   #后台管理
   jvs-ui:
     restart: always
@@ -125,6 +137,12 @@ services:
     container_name: jvs-apply-document
     networks:
       - jvs
+    depends_on:
+      - jvs-minio
+      - jvs-redis
+      - jvs-mysql
+      - gateway
+      - elasticsearch
   #企业知识库前端
   jvs-knowledge-ui:
     restart: always
