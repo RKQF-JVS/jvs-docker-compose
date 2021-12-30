@@ -37,7 +37,7 @@ JVS是“软开企服”推出的面向软件开发团队可以快速实现应�
 ## 部署项目
 
 进入目录 `cd  jvs-docker-compose`
-
+授权 `chmod a+x start.sh`
 启动服务 `docker-compose up -d `
 
 
