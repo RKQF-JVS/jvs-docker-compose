@@ -81,7 +81,7 @@ services:
   gateway:
     restart: always
     container_name: gateway
-    image: 0glg0/jvs-gateway:${JVSVERSION}
+    image: 0glg0/gateway:${JVSVERSION}
     volumes:
       - ./data/nacos/:/root/nacos/config
     ports:
