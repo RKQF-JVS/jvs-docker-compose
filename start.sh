@@ -1,5 +1,6 @@
 #!/bin/sh
 echo "初始化数据库"
+docker-compose  pull
 docker-compose  up -d jvs-mysql
 echo "等待中"
 sleep 90
