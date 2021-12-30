@@ -17,6 +17,10 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci  --lower_case_table_names=1 --max_connections=1024
     networks:
       - jvs
+    depends_on:
+      - elasticsearch
+      - jvs-redis
+      - jvs-minio
   jvs-nacos:
     image: nacos/nacos-server:2.0.0
     container_name: jvs-nacos
@@ -35,7 +39,10 @@ services:
       - "8848:8848"
     networks:
       - jvs
-
+    depends_on:
+      - jvs-mysql
+      - elasticsearch
+      - jvs-redis
   #文件服务器需要
   jvs-minio:
     image: minio/minio
@@ -89,8 +96,8 @@ services:
     networks:
       - jvs
     depends_on:
+      - elasticsearch
       - jvs-redis
-      - jvs-mysql
 
   #用户管理
   jvs-auth-mgr:
@@ -101,10 +108,6 @@ services:
       - ./data/nacos/:/root/nacos/config
     networks:
       - jvs
-    depends_on:
-      - jvs-redis
-      - jvs-mysql
-      - gateway
   #授权认证
   jvs-auth:
     restart: always
@@ -114,10 +117,6 @@ services:
       - ./data/nacos/:/root/nacos/config
     networks:
       - jvs
-    depends_on:
-      - jvs-redis
-      - jvs-mysql
-      - gateway
   #后台管理
   jvs-ui:
     restart: always
@@ -127,7 +126,9 @@ services:
       - jvs
     ports:
       - 80:80
-
+    depends_on:
+      - jvs-auth
+      - jvs-auth-mgr
   #添加企业知识库
   jvs-apply-document:
     restart: always
@@ -138,11 +139,7 @@ services:
     networks:
       - jvs
     depends_on:
-      - jvs-minio
-      - jvs-redis
-      - jvs-mysql
-      - gateway
-      - elasticsearch
+      - jvs-knowledge-ui
   #企业知识库前端
   jvs-knowledge-ui:
     restart: always
