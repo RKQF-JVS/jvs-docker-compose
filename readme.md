@@ -20,11 +20,11 @@ JVS是“软开企服”推出的面向软件开发团队可以快速实现应�
 
 ## 安装docker、docker-compose（安装中需要有一定的运维基础，如果遇到问题请联系客服微信描述问题提交工单。我们会安排人员为您解决。）
 
-一键安装，如果有docker-compose可跳过
+#### 安装docker 和docker-compose （如已经安装 可以跳过）
 
-`curl -C- -O --retry 3 https://iptables.cn/file/docker/zebra-docker && chmod a+x zebra-docker && ./zebra-docker -I`
-
-`source /etc/profile`
+```bash
+curl -C- -O --retry 3 https://iptables.cn/file/docker/zebra-docker && chmod a+x jvs-docker && ./jvs-docker -I
+```
 
 ## 下载项目
 
