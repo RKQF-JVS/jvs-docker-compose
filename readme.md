@@ -18,21 +18,19 @@ JVS是“软开企服”推出的面向软件开发团队可以快速实现应�
 
 
 
-## 安装docker、docker-compose
+## 安装docker、docker-compose（安装中需要有一定的运维基础，如果遇到问题请联系客服微信描述问题提交工单。我们会安排人员为您解决。）
 
 一键安装，如果有docker-compose可跳过
 
 `curl -C- -O --retry 3 https://iptables.cn/file/docker/zebra-docker && chmod a+x zebra-docker && ./zebra-docker -I`
 
-
+`source /etc/profile`
 
 ## 下载项目
 
 1、直接下载方式  https://gitee.com/software-minister/jvs-docker-compose
 
 2、git下载方式：`git clone https://gitee.com/software-minister/jvs-docker-compose.git`
-
-3、版本下载:https://gitee.com/software-minister/jvs-docker-compose/releases/1.0.0 
 
 ## 部署项目
 
@@ -45,8 +43,6 @@ JVS是“软开企服”推出的面向软件开发团队可以快速实现应�
 密码:   `admin`
 
 ### 访问后台`http://localhost`
-
-
 
 
 
