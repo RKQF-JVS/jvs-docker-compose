@@ -50,5 +50,5 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 
 
 ### 技术支撑群
-![输入图片说明](image.png)
+![输入图片说明](1641540011(20220107).png)
 
