@@ -3,7 +3,6 @@ echo "初始化数据库"
 
 docker-compose  pull
 docker-compose  up -d jvs-mysql
-chmod -R 777 ./data/
 echo "等待中"
 sleep 90
 echo "初始化基础数据"
