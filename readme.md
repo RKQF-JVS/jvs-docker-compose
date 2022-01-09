@@ -33,22 +33,31 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 2、git下载方式：`git clone https://gitee.com/software-minister/jvs-docker-compose.git`
 
 ## 部署项目
-
-进入目录 `cd  jvs-docker-compose`
-授权 `chmod a+x start.sh`
-执行 `./start.sh`
+- 部署数据库
+```bash
+docker-compose -f docker-compose-db.yml  up -d
+```
+- 部署应用
+```bash
+# 应用启动 根据硬件情况而定 请等待几分钟
+docker-compose up -d 
+```
 
 帐号：`admin`
-
 密码:   `admin`
 
 ### 访问后台`http://localhost`
-
-
-
 ### 访问知识库 `http://localhost:8080`
+### nacos `http://localhost:8848`
 
+####知识库大概页面
+#### 思维导图
+![](./img/20220109202815.png)
+### 流程图
+![](./img/20220109202746.png)
+#### 表单
+![](./img/20220109202836.png)
 
 ### 技术支撑群
-![输入图片说明](1641540011(20220107).png)
+![输入图片说明](./img/1641540011(20220107).png)
 
