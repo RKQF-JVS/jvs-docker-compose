@@ -65,6 +65,7 @@ services:
     container_name: jvs-redis
     image: redis:5.0.8
     restart: always
+    command: redis-server --requirepass "redis" 
     ports:
       - 6379:6379
     networks:
