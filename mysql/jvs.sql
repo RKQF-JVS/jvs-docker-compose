@@ -2465,7 +2465,7 @@ CREATE TABLE `sys_user`  (
   `account_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '帐号名',
   `email` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '邮件',
   `head_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'https://jvs-public.oss-cn-beijing.aliyuncs.com/favicon%20%284%29.ico' COMMENT '头像',
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '密码',
+  `password` varchar(255) COLLATE utf8mb4_bin DEFAULT '$2a$10$rV8aIFfDTg6G2SsQdkE9C.Be1kFb0kery5akAh8pdjc3C9c.6lLiu' COMMENT '密码(默认123456)',
   `phone` char(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '手机号',
   `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_time` timestamp(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
