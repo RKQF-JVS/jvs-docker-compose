@@ -37,6 +37,11 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 ```bash
 docker-compose -f docker-compose-db.yml  up -d
 ```
+- 查看nacos是否启动
+```bash
+# 程序依赖nacos 请保证能正常访问nacos后 再执行应用部署
+curl -X GET   'http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=jvs-gateway&group=jvs&tenant=jvs'
+```
 - 部署应用
 ```bash
 # 应用启动 根据硬件情况而定 请等待几分钟
@@ -48,7 +53,7 @@ docker-compose up -d
 
 ### 访问后台`http://localhost`
 ### 访问知识库 `http://localhost:8080`
-### nacos `http://localhost:8848`
+### nacos `http://localhost:8848/nacos`
 
 ####知识库大概页面
 #### 思维导图
