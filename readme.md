@@ -65,5 +65,5 @@ docker-compose up -d
 
 ### 技术支撑群
 
-![输入图片说明](20220128.png)
+![输入图片说明](image.png)
 
