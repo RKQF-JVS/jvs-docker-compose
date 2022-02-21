@@ -81,6 +81,12 @@ docker-compose up -d
 
 ![输入图片说明](img/%E5%9B%BE%E6%A0%87.png)
 
+![输入图片说明](%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91.png)
+
+
+
+![输入图片说明](%E8%A1%A8%E6%A0%BC%E7%BC%96%E8%BE%91.png)
+
 ### 技术支撑群
 
 ![输入图片说明](image.png)
