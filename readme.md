@@ -12,7 +12,7 @@ JVS是“软开企服”推出的面向软件开发团队可以快速实现应�
 
 
 
-建议内存大小8G+
+建议内存大小16G+
 
 `安装过程中如出现其它任何问题可联系技术支持群`
 
@@ -33,6 +33,14 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 2、git下载方式：`git clone https://gitee.com/software-minister/jvs-docker-compose.git`
 
 ## 部署项目
+
+
+#### 替换主机ip地址
+请将${ip}修改为本地IP 
+
+sed -i -e 's/jvs-minio/${ip}/g'  /mysql/nacos.sql
+
+
 - 部署数据库
 ```bash
 docker-compose -f docker-compose-db.yml  up -d

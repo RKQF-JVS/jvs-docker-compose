@@ -4,9 +4,13 @@ services:
   gateway:
     restart: always
     container_name: gateway
-    image: 0glg0/gateway:${JVSVERSION}
+    image: 0glg0/jvs-gateway:${JVSVERSION}
     volumes:
       - ./data/nacos/:/root/nacos/config
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      JAVA_OPTS: ${JAVA_OPTS}
     ports:
       - 10000:10000
     networks:
@@ -17,6 +21,10 @@ services:
     restart: always
     image: 0glg0/jvs-auth-mgr:${JVSVERSION}
     container_name: jvs-auth-mgr
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      JAVA_OPTS: ${JAVA_OPTS}
     volumes:
       - ./data/nacos/:/root/nacos/config
     networks:
@@ -26,6 +34,10 @@ services:
     restart: always
     image: 0glg0/jvs-auth:${JVSVERSION}
     container_name: jvs-auth
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      JAVA_OPTS: ${JAVA_OPTS}
     volumes:
       - ./data/nacos/:/root/nacos/config
     networks:
@@ -42,6 +54,43 @@ services:
     depends_on:
       - jvs-auth
       - jvs-auth-mgr
+  jvs-design-mgr:
+    restart: always
+    image: 0glg0/jvs-design-mgr:${JVSVERSION}
+    container_name: jvs-design-mgr
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      JAVA_OPTS: ${JAVA_OPTS}
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    networks:
+      - jvs
+
+  rule-mgr:
+    restart: always
+    image: 0glg0/rule-mgr:${JVSVERSION}
+    container_name: rule-mgr
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      JAVA_OPTS: ${JAVA_OPTS}
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    networks:
+      - jvs
+  #文件预览
+  kkfile:
+    restart: always
+    image: 0glg0/kkfileview:latest
+    container_name: kkfile
+    ports:
+      - 20812:8012
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    networks:
+      - jvs
+
   #添加企业知识库
   jvs-apply-document:
     restart: always
@@ -49,6 +98,10 @@ services:
       - ./data/nacos/:/root/nacos/config
     image: 0glg0/document-mgr:${JVSVERSION}
     container_name: jvs-apply-document
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      JAVA_OPTS: ${JAVA_OPTS}
     networks:
       - jvs
     depends_on:
@@ -62,6 +115,22 @@ services:
       - jvs
     ports:
       - 8080:80
+  #协同IM
+  jvs-modules-im-mgr:
+    restart: always
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    image: 0glg0/jvs-modules-im-mgr:${JVSVERSION}
+    container_name: jvs-modules-im-mgr
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      JAVA_OPTS: ${JAVA_OPTS}
+    networks:
+      - jvs
+    depends_on:
+      - jvs-knowledge-ui
+
 
 #桥接网络
 networks:

@@ -63,9 +63,10 @@ services:
   #缓存
   jvs-redis:
     container_name: jvs-redis
-    image: redis:5.0.8
+    image: redis:6.0
     restart: always
-    command: redis-server --requirepass "redis" 
+    privileged: true
+   # command: redis-server --requirepass "redis" 
     ports:
       - 6379:6379
     networks:
@@ -83,6 +84,23 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+    networks:
+      - jvs
+  #文件存储
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - RABBITMQ_DEFAULT_USER=jvs
+      - RABBITMQ_DEFAULT_PASS=jvs
+      - RABBITMQ_DEFAULT_VHOST=/jvs
+    volumes:
+      - ./data/rabbitmq/:/var/lib/rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
     networks:
       - jvs
 
