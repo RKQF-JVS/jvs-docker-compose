@@ -2038,15 +2038,7 @@ CREATE TABLE `dc_library` (
 -- ----------------------------
 -- Records of dc_library
 -- ----------------------------
-BEGIN;
-INSERT INTO `dc_library` VALUES ('6142d5059cfae90d940ad68b2a97a918', '风控决策处理异步处理流程_状态 1.png', 'user', NULL, 0, NULL, NULL, NULL, NULL, 'document_upload', '7a040aecac281ad5c9d4d455dbb88811', 0.0000, 'jvs-apply-document', 'document-mgr/2022-02-21-680446060669079552-风控决策处理异步处理流程_状态 1.png', 'admin', '1', '2022-02-21 16:09:43', 'admin', '2022-02-21 16:09:43', 0, NULL, NULL, '1', NULL, 3, NULL, '7a040aecac281ad5c9d4d455dbb88811', NULL, 1, NULL, NULL, 1, 1, NULL, 'png');
-INSERT INTO `dc_library` VALUES ('6a543d044a40c94158addb711b0b2067', 'jvs-1.1.0.pom', 'user', NULL, 0, NULL, NULL, NULL, NULL, 'document_upload', '7a040aecac281ad5c9d4d455dbb88811', 0.0000, 'jvs-apply-document', 'document-mgr/2022-02-21-680447250911891456-jvs-1.1.0.pom', 'admin', '1', '2022-02-21 16:14:27', 'admin', '2022-02-21 16:14:27', 0, NULL, NULL, '1', NULL, 4, NULL, '7a040aecac281ad5c9d4d455dbb88811', NULL, 1, NULL, NULL, 1, 1, NULL, 'pom');
-INSERT INTO `dc_library` VALUES ('6f01a06e77a24da235a7294fc66c244d', 'aa.xlsx', 'user', NULL, 0, NULL, NULL, NULL, NULL, 'document_upload', '7a040aecac281ad5c9d4d455dbb88811', 0.0000, 'jvs-apply-document', 'document-mgr/2022-02-21-680447380440387584-aa.xlsx', 'admin', '1', '2022-02-21 16:14:58', 'admin', '2022-02-21 16:14:58', 0, NULL, NULL, '1', NULL, 5, NULL, '7a040aecac281ad5c9d4d455dbb88811', NULL, 1, NULL, NULL, 1, 1, NULL, 'xlsx');
-INSERT INTO `dc_library` VALUES ('7a040aecac281ad5c9d4d455dbb88811', 'fasd', 'user', NULL, 0, NULL, NULL, NULL, NULL, 'knowledge', '0', 0.0000, NULL, NULL, 'admin', '1', '2022-02-21 14:43:53', 'admin', '2022-02-21 14:43:53', 0, 'dsfa', NULL, '1', NULL, 0, NULL, NULL, NULL, 1, NULL, NULL, 1, 1, NULL, NULL);
-INSERT INTO `dc_library` VALUES ('846b02e7fe1d7490388df719c83538c8', '未命名文件', 'user', NULL, 0, NULL, NULL, NULL, NULL, 'document_html', '7a040aecac281ad5c9d4d455dbb88811', 0.0000, 'document-mgr', 'fasd/未命名文件/2022-02-21-680430151413960704-c51423d67b9a401e8e6875581a2491f0.document_html', 'admin', '1', '2022-02-21 14:57:38', 'admin', '2022-02-21 15:06:30', 0, NULL, NULL, '1', NULL, 0, NULL, '7a040aecac281ad5c9d4d455dbb88811', NULL, 1, NULL, NULL, 1, 1, NULL, NULL);
-INSERT INTO `dc_library` VALUES ('d87741b66359c4a8e93b6a6ed2927dd6', 'kuboard_jvs_2022_02_17_14_16_18.yaml', 'user', NULL, 0, NULL, NULL, NULL, NULL, 'document_upload', '7a040aecac281ad5c9d4d455dbb88811', 0.0000, 'jvs-apply-document', 'document-mgr/2022-02-21-680445582291931136-kuboard_jvs_2022_02_17_14_16_18.yaml', 'admin', '1', '2022-02-21 16:07:49', 'admin', '2022-02-21 16:07:49', 0, NULL, NULL, '1', NULL, 2, NULL, '7a040aecac281ad5c9d4d455dbb88811', NULL, 1, NULL, NULL, 1, 1, NULL, 'yaml');
-INSERT INTO `dc_library` VALUES ('f9fed830171b4536573912c33f0317da', 'okr.docx', 'user', NULL, 0, NULL, NULL, NULL, NULL, 'document_upload', '7a040aecac281ad5c9d4d455dbb88811', 0.0000, 'jvs-apply-document', 'document-mgr/2022-02-21-680431514428542976-okr.docx', 'admin', '1', '2022-02-21 15:11:55', 'admin', '2022-02-21 15:11:55', 0, NULL, NULL, '1', NULL, 1, NULL, '7a040aecac281ad5c9d4d455dbb88811', NULL, 1, NULL, NULL, 1, 1, NULL, 'docx');
-COMMIT;
+
 
 -- ----------------------------
 -- Table structure for dc_library_authority
@@ -3814,14 +3806,7 @@ CREATE TABLE `sys_file` (
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-BEGIN;
-INSERT INTO `sys_file` VALUES ('0b5df2e58e6fe1a0fa9d09e95de7e525', 'fasd/未命名文件/2022-02-21-680430151413960704-c51423d67b9a401e8e6875581a2491f0.document_html', 'document_html', 'document-mgr', 'fasd/未命名文件', '2022-02-21 15:06:30', 'fasd/未命名文件/2022-02-21-680430151413960704-c51423d67b9a401e8e6875581a2491f0.document_html', 111, NULL, NULL, NULL);
-INSERT INTO `sys_file` VALUES ('3b0db15be8ae4a37a82e6d31234630ae', 'document-mgr/2022-02-21-680447380440387584-aa.xlsx', 'xlsx', 'jvs-apply-document', 'document-mgr', '2022-02-21 16:14:58', 'document-mgr/2022-02-21-680447380440387584-aa.xlsx', 14807, NULL, NULL, NULL);
-INSERT INTO `sys_file` VALUES ('8e4efdf2c53a1abdc1ddb67af02db10e', 'document-mgr/2022-02-21-680446060669079552-风控决策处理异步处理流程_状态 1.png', 'image/png', 'jvs-apply-document', 'document-mgr', '2022-02-21 16:09:43', 'document-mgr/2022-02-21-680446060669079552-风控决策处理异步处理流程_状态 1.png', 329798, NULL, NULL, NULL);
-INSERT INTO `sys_file` VALUES ('a8e118d32626daa4980db8c8a8c011d3', 'document-mgr/2022-02-21-680447250911891456-jvs-1.1.0.pom', '1.0.pom', 'jvs-apply-document', 'document-mgr', '2022-02-21 16:14:27', 'document-mgr/2022-02-21-680447250911891456-jvs-1.1.0.pom', 15551, NULL, NULL, NULL);
-INSERT INTO `sys_file` VALUES ('bbead6a31514982726df72ecb4025695', 'document-mgr/2022-02-21-680445582291931136-kuboard_jvs_2022_02_17_14_16_18.yaml', 'yaml', 'jvs-apply-document', 'document-mgr', '2022-02-21 16:07:49', 'document-mgr/2022-02-21-680445582291931136-kuboard_jvs_2022_02_17_14_16_18.yaml', 3138, NULL, NULL, NULL);
-INSERT INTO `sys_file` VALUES ('ec4578646825da0f8f88273c8e26db03', 'document-mgr/2022-02-21-680431514428542976-okr.docx', 'docx', 'jvs-apply-document', 'document-mgr', '2022-02-21 15:11:55', 'document-mgr/2022-02-21-680431514428542976-okr.docx', 24604, NULL, NULL, NULL);
-COMMIT;
+
 
 -- ----------------------------
 -- Table structure for sys_gateway_code
