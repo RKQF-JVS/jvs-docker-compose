@@ -38,7 +38,7 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 #### 替换主机ip地址
 请将${ip}修改为本地IP 
 
-sed -i -e 's/jvs-minio/${ip}/g'  /mysql/nacos.sql
+sed -i -e 's/jvs-minio/${ip}/g'  ./mysql/nacos.sql
 
 
 - 部署数据库
@@ -57,7 +57,7 @@ docker-compose up -d
 ```
 
 帐号：`admin`
-密码:   `admin`
+密码:   `123456`
 
 ### 访问后台`http://localhost`
 ### 访问知识库 `http://localhost:8080`
@@ -70,6 +70,22 @@ docker-compose up -d
 ![](./img/20220109202746.png)
 #### 表单
 ![](./img/20220109202836.png)
+
+![输入图片说明](img/%E9%A6%96%E9%A1%B5.png)
+
+![输入图片说明](img/%E8%A1%A8%E5%8D%95.png)
+![输入图片说明](img/%E6%B5%81%E7%A8%8B.png)
+![输入图片说明](img/%E9%80%BB%E8%BE%91.png)
+
+![输入图片说明](img/%E5%9B%BE%E8%A1%A8.png)
+
+![输入图片说明](img/%E5%9B%BE%E6%A0%87.png)
+
+![输入图片说明](%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91.png)
+
+
+
+![输入图片说明](%E8%A1%A8%E6%A0%BC%E7%BC%96%E8%BE%91.png)
 
 ### 技术支撑群
 
