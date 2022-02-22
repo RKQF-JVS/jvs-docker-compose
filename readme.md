@@ -57,7 +57,7 @@ docker-compose up -d
 ```
 
 帐号：`admin`
-密码:   `admin`
+密码:   `123456`
 
 ### 访问后台`http://localhost`
 ### 访问知识库 `http://localhost:8080`
