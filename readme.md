@@ -38,7 +38,7 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 #### 替换主机ip地址
 请将${ip}修改为本地IP 
 
-sed -i -e 's/jvs-minio/${ip}/g'  /mysql/nacos.sql
+sed -i -e 's/jvs-minio/${ip}/g'  ./mysql/nacos.sql
 
 
 - 部署数据库
