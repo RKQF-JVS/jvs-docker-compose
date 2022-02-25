@@ -33,6 +33,13 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 2、git下载方式：`git clone https://gitee.com/software-minister/jvs-docker-compose.git`
 
 ## 部署项目
+
+- 请将${ip}修改为本地IP 
+
+```
+sed -i -e 's/jvs-minio/${ip}/g'  ./mysql/nacos.sql
+```
+
 - 部署数据库
 ```bash
 docker-compose -f docker-compose-db.yml  up -d
