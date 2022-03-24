@@ -63,6 +63,11 @@ docker-compose up -d
 ### 访问知识库 `http://localhost:8080`
 ### nacos `http://localhost:8848/nacos`
 
+
+
+## 常见故障处理  [点我查看](http://knowledge.bctools.cn/#/detail?knowledgeId=d728e1ed49b66706fd4f9f7a64349841&type=document_html&id=1d51f6ddd145aa319394bd597a027f1d&security=false&key=83f6cf7bc4184691e8f53e0153936824)
+
+
 ####知识库大概页面
 #### 思维导图
 ![](./img/20220109202815.png)
