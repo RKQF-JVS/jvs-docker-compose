@@ -40,6 +40,9 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 
 sed -i -e 's/jvs-minio/${ip}/g'  ./mysql/nacos.sql
 
+例:
+sed -i -e 's/jvs-minio/114.114.114.114/g'  ./mysql/nacos.sql
+
 
 - 部署数据库
 ```bash
