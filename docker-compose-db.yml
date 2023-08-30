@@ -89,7 +89,7 @@ services:
   #文件存储
   rabbitmq:
     container_name: rabbitmq
-    image: rabbitmq:management
+    image: registry.cn-hangzhou.aliyuncs.com/rkqf/jvs-rabbitmq:management
     restart: always
     environment:
       - TZ=Asia/Shanghai
