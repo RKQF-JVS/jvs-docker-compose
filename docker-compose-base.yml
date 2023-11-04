@@ -4,14 +4,14 @@ services:
   #后台服务
   jvs-ui:
     restart: always
-    image: 0glg0/jvs-ui:${JVSVERSION}
+    image: ${dockerName}/jvs-ui:${JVSVERSION}
     container_name: jvs-ui
     ports:
       - 8088:80
   #网关
   jvs-gateway:
     restart: always
-    image: 0glg0/jvs-gateway:${JVSVERSION}
+    image: ${dockerName}/jvs-gateway:${JVSVERSION}
     container_name: gateway
     environment:
       nacosAddr: ${nacosAddr}
@@ -27,7 +27,7 @@ services:
   #授权管理
   jvs-auth-mgr:
     restart: always
-    image: 0glg0/jvs-auth-mgr:${JVSVERSION}
+    image: ${dockerName}/jvs-auth-mgr:${JVSVERSION}
     container_name: jvs-auth-mgr
     environment:
       nacosAddr: ${nacosAddr}
@@ -42,7 +42,7 @@ services:
   #授权中心
   jvs-auth:
     restart: always
-    image: 0glg0/jvs-auth:${JVSVERSION}
+    image: ${dockerName}/jvs-auth:${JVSVERSION}
     container_name: jvs-auth
     environment:
       nacosAddr: ${nacosAddr}
@@ -58,7 +58,7 @@ services:
   #定时任务服务
   jvs-xxl-job-admin:
     restart: always
-    image: 0glg0/jvs-xxl-job-admin:latest
+    image: ${dockerName}/jvs-xxl-job-admin:latest
     container_name: jvs-xxl-job-admin
     environment:
       nacosAddr: ${nacosAddr}
@@ -70,6 +70,22 @@ services:
       - ./data/log/:/log
     ports:
       - 9090:9090
+  #消息管理
+  jvs-message-mgr:
+    restart: always
+    image: ${dockerName}/jvs-message-push:${JVSVERSION}
+    container_name: jvs-message-push
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      authentication: ${authentication}
+      JAVA_OPTS: ${JAVA_OPTS} -Dserver.port=48080
+    ports:
+      - 48080:48080
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
 
 networks:
   proxy:
