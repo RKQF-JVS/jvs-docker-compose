@@ -1,0 +1,69 @@
+version: '3'
+services:
+  #网关服务器，所有接口调用的入口
+  gateway:
+    restart: always
+    container_name: gateway
+    image: 0glg0/gateway:${JVSVERSION}
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    ports:
+      - 10000:10000
+    networks:
+      - jvs
+
+  #用户管理
+  jvs-auth-mgr:
+    restart: always
+    image: 0glg0/jvs-auth-mgr:${JVSVERSION}
+    container_name: jvs-auth-mgr
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    networks:
+      - jvs
+  #授权认证
+  jvs-auth:
+    restart: always
+    image: 0glg0/jvs-auth:${JVSVERSION}
+    container_name: jvs-auth
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    networks:
+      - jvs
+  #后台管理
+  jvs-ui:
+    restart: always
+    image: 0glg0/jvs-ui:${JVSVERSION}
+    container_name: jvs-ui
+    networks:
+      - jvs
+    ports:
+      - 80:80
+    depends_on:
+      - jvs-auth
+      - jvs-auth-mgr
+  #添加企业知识库
+  jvs-apply-document:
+    restart: always
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+    image: 0glg0/document-mgr:${JVSVERSION}
+    container_name: jvs-apply-document
+    networks:
+      - jvs
+    depends_on:
+      - jvs-knowledge-ui
+  #企业知识库前端
+  jvs-knowledge-ui:
+    restart: always
+    image: 0glg0/jvs-knowledge-ui:${JVSVERSION}
+    container_name: jvs-knowledge-ui
+    networks:
+      - jvs
+    ports:
+      - 8080:80
+
+#桥接网络
+networks:
+  jvs:
+    driver: bridge
