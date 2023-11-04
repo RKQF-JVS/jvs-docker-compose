@@ -28,9 +28,9 @@ curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jv
 
 ## 下载项目
 
-1、直接下载方式  https://gitee.com/software-minister/jvs-docker-compose
+1、直接下载方式  https://github.com/RKQF-JVS/jvs-docker-compose
 
-2、git下载方式：`git clone https://gitee.com/software-minister/jvs-docker-compose.git`
+2、git下载方式：`git clone https://github.com/RKQF-JVS/jvs-docker-compose.git`
 
 ## 部署项目
 
