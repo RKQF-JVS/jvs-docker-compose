@@ -1,0 +1,30 @@
+version: '3'
+services:
+  #项目管理
+  jvs-teamwork-mgr:
+    restart: always
+    image: 0glg0/jvs-teamwork-ultimate:${JVSVERSION}
+    container_name: jvs-teamwork-mgr
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      JAVA_OPTS: ${JAVA_OPTS} -Dserver.port=30020
+    ports:
+      - 30020:30020
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+  #项目管理前端
+  jvs-teamwork-ui:
+    restart: always
+    image: 0glg0/jvs-teamwork-ui:${JVSVERSION}
+    container_name: jvs-teamwork-ui
+    ports:
+      - 38080:80
+#桥接网络
+networks:
+  proxy:
+    ipam:
+      config:
+        - subnet: 10.0.0.1/24

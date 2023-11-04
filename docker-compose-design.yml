@@ -1,0 +1,24 @@
+version: '3'
+services:
+  #低代码设计
+  jvs-design-mgr:
+    restart: always
+    image: 0glg0/jvs-design-mgr:${JVSVERSION}
+    container_name: jvs-design-mgr
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      JAVA_OPTS: ${JAVA_OPTS} -Dserver.port=50011
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+    ports:
+      - 50011:50011
+
+#桥接网络
+networks:
+  proxy:
+    ipam:
+      config:
+        - subnet: 10.0.0.1/24

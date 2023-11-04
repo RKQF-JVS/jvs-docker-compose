@@ -1,0 +1,78 @@
+version: '3'
+services:
+
+  #后台服务
+  jvs-ui:
+    restart: always
+    image: 0glg0/jvs-ui:${JVSVERSION}
+    container_name: jvs-ui
+    ports:
+      - 8088:80
+  #网关
+  jvs-gateway:
+    restart: always
+    image: 0glg0/jvs-gateway:${JVSVERSION}
+    container_name: gateway
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      JAVA_OPTS: ${JAVA_OPTS}
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+      - ./data/icon/:/icon
+    ports:
+      - 10000:10000
+  #授权管理
+  jvs-auth-mgr:
+    restart: always
+    image: 0glg0/jvs-auth-mgr:${JVSVERSION}
+    container_name: jvs-auth-mgr
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      JAVA_OPTS: ${JAVA_OPTS} -Dserver.port=3001
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+    ports:
+      - 3001:3001
+  #授权中心
+  jvs-auth:
+    restart: always
+    image: 0glg0/jvs-auth:${JVSVERSION}
+    container_name: jvs-auth
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      JAVA_OPTS: ${JAVA_OPTS}
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+    ports:
+      - 3000:3000
+
+  #定时任务服务
+  jvs-xxl-job-admin:
+    restart: always
+    image: 0glg0/jvs-xxl-job-admin:latest
+    container_name: jvs-xxl-job-admin
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      JAVA_OPTS: ${JAVA_OPTS}
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+    ports:
+      - 9090:9090
+
+networks:
+  proxy:
+    ipam:
+      config:
+        - subnet: 10.0.0.1/24

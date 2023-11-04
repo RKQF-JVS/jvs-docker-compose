@@ -1,0 +1,67 @@
+version: '3'
+services:
+  #无忧企业文档
+  jvs-document-mgr:
+    restart: always
+    image: 0glg0/jvs-document-mgr:${JVSVERSION}
+    container_name: jvs-document-mgr
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      JAVA_OPTS: ${JAVA_OPTS} -Dserver.port=50020
+    ports:
+      - 50020:50020
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+  #前端
+  jvs-knowledge-ui:
+    restart: always
+    image: 0glg0/jvs-knowledge-ui:${JVSVERSION}
+    container_name: jvs-knowledge-ui
+    ports:
+      - 8081:80
+    volumes:
+      - ./data/jvs-knowledge-plugins/:/usr/share/nginx/html/jvs-knowledge-plugins/
+  #协同编辑
+  jvs-modules-im:
+    restart: always
+    image: 0glg0/jvs-modules-im-mgr:latest
+    container_name: jvs-modules-im
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      JAVA_OPTS: ${JAVA_OPTS}
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+  #前端预览
+  kkfile:
+    restart: always
+    image: 0glg0/kkfile:${JVSVERSION}
+    container_name: kkfile
+    ports:
+      - 20812:8012
+
+  #富文本协同
+  ot-server:
+      restart: always
+      image: registry.cn-hangzhou.aliyuncs.com/luoxing/ot-server:latest
+      container_name: ot-server
+      ports:
+        - 28080:8080
+  #trwebocr ocr
+  trwebocr:
+    restart: always
+    image: mmmz/trwebocr:latest
+    container_name: trwebocr
+    ports:
+      - 28089:8089
+#桥接网络
+networks:
+  proxy:
+    ipam:
+      config:
+        - subnet: 10.0.0.1/24
