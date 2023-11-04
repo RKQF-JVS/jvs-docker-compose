@@ -1,7 +1,7 @@
 version: '3'
 services:
   jvs-mysql:
-    image: mysql:5.7
+    image: ${dockerName}/mysql:5.7
     container_name: jvs-mysql
     volumes:
       - ./data/mysql/:/var/lib/mysql
@@ -15,9 +15,9 @@ services:
     ports:
       - "3306:3306"
     restart: always
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci  --lower_case_table_names=1 --max_connections=4096
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci  --lower_case_table_names=1 --max_connections=4096 --sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
   jvs-nacos:
-    image: nacos/nacos-server:2.0.0
+    image: ${dockerName}/nacos-server:2.0.0
     container_name: jvs-nacos
     environment:
       - MODE=standalone
@@ -38,7 +38,7 @@ services:
       - jvs-redis
   #文件服务器需要
   jvs-minio:
-    image: minio/minio:RELEASE.2022-06-11T19-55-32Z.fips
+    image: ${dockerName}/minio:RELEASE.2022-06-11T19-55-32Z.fips
     container_name: jvs-minio
     restart: always
     environment:
@@ -51,21 +51,10 @@ services:
       - 9000:9000
       - 9001:9001
     command: server /data --console-address ':9001'
-  createbuckets:
-    image: minio/mc
-    depends_on:
-      - jvs-minio
-    entrypoint: >
-      /bin/sh -c "
-      /usr/bin/mc alias set myminio http://jvs-minio:9000 miniominio miniominio;
-      /usr/bin/mc mb myminio/jvs-public;
-      /usr/bin/mc policy set public myminio/jvs-public;
-      exit 0;
-      "
   #缓存
   jvs-redis:
     container_name: jvs-redis
-    image: redis:6.0
+    image: ${dockerName}/redis:6.0
     restart: always
     privileged: true
    # command: redis-server --requirepass "redis"
@@ -76,20 +65,20 @@ services:
   #文件存储
   elasticsearch:
     container_name: elasticsearch
-    image: elasticsearch:7.4.2
+    image: ${dockerName}/elasticsearch:7.4.2
     restart: always
     environment:
       - discovery.type=single-node
       - TZ=Asia/Shanghai
     volumes:
-      - elasticsearch:/usr/share/elasticsearch/data:z
+      - ./data/elasticsearch/data:/usr/share/elasticsearch/data/
     ports:
       - 9200:9200
       - 9300:9300
   #文件存储
   rabbitmq:
     container_name: rabbitmq
-    image: 0glg0/jvs-rabbitmq:management
+    image: ${dockerName}/jvs-rabbitmq:management
     restart: always
     environment:
       - TZ=Asia/Shanghai
@@ -103,7 +92,7 @@ services:
       - 15672:15672
   jvs-mongo:
     container_name: jvs-mongo
-    image: mongo
+    image: ${dockerName}/mongo:latest
     restart: always
     environment:
       - TZ=Asia/Shanghai
@@ -117,6 +106,3 @@ networks:
     ipam:
       config:
         - subnet: 10.0.0.1/24
-# es存储卷
-volumes:
-  elasticsearch:

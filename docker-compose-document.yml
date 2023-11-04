@@ -3,7 +3,7 @@ services:
   #无忧企业文档
   jvs-document-mgr:
     restart: always
-    image: 0glg0/jvs-document-mgr:${JVSVERSION}
+    image: ${dockerName}/jvs-document-mgr:${JVSVERSION}
     container_name: jvs-document-mgr
     environment:
       nacosAddr: ${nacosAddr}
@@ -18,16 +18,27 @@ services:
   #前端
   jvs-knowledge-ui:
     restart: always
-    image: 0glg0/jvs-knowledge-ui:${JVSVERSION}
+    image: ${dockerName}/jvs-knowledge-ui:${JVSVERSION}
     container_name: jvs-knowledge-ui
     ports:
       - 8081:80
     volumes:
       - ./data/jvs-knowledge-plugins/:/usr/share/nginx/html/jvs-knowledge-plugins/
+      - ./data/icon/:/usr/share/nginx/html/icon/
+  #前端API-UI
+  jvs-knowledge-api-ui:
+   restart: always
+   container_name: jvs-knowledge-api-ui
+   image: ${dockerName}/jvs-knowledge-api-ui:${JVSVERSION}
+   ports:
+     - 8082:80
+   volumes:
+     - ./data/jvs-knowledge-plugins/:/usr/share/nginx/html/jvs-knowledge-plugins/
+     - ./data/icon/:/usr/share/nginx/html/icon/
   #协同编辑
   jvs-modules-im:
     restart: always
-    image: 0glg0/jvs-modules-im-mgr:latest
+    image: ${dockerName}/jvs-modules-im-mgr:latest
     container_name: jvs-modules-im
     environment:
       nacosAddr: ${nacosAddr}
@@ -40,7 +51,7 @@ services:
   #前端预览
   kkfile:
     restart: always
-    image: 0glg0/kkfile:${JVSVERSION}
+    image: ${dockerName}/kkfile:${JVSVERSION}
     container_name: kkfile
     ports:
       - 20812:8012
