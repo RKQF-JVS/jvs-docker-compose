@@ -1,0 +1,24 @@
+version: '3'
+services:
+  #消息管理
+  jvs-message-mgr:
+    restart: always
+    image: 0glg0/jvs-message-push:${JVSVERSION}
+    container_name: jvs-message-push
+    environment:
+      nacosAddr: ${nacosAddr}
+      namespace: ${namespace}
+      skyip: ${skyip}
+      authentication: ${authentication}
+      JAVA_OPTS: ${JAVA_OPTS} -Dserver.port=48080
+    ports:
+      - 48080:48080
+    volumes:
+      - ./data/nacos/:/root/nacos/config
+      - ./data/log/:/log
+#桥接网络
+networks:
+  proxy:
+    ipam:
+      config:
+        - subnet: 10.0.0.1/24
