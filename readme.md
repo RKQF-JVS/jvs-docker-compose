@@ -23,7 +23,7 @@ JVS是“软开企服”推出的面向软件开发团队可以快速实现应�
 #### 安装docker 和docker-compose （如已经安装 可以跳过）
 
 ```bash
-curl -C- -O --retry 3 https://iptables.cn/file/docker/jvs-docker && chmod a+x jvs-docker && ./jvs-docker -I
+curl -C- -O --retry 3 https://bctools.cn/jvs-docker && chmod a+x jvs-docker && ./jvs-docker -I
 ```
 
 ## 下载项目
