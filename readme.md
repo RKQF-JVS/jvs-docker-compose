@@ -72,5 +72,6 @@ docker-compose up -d
 
 ### 技术支撑群
 
-![输入图片说明](image.png)
+![小微信图片_20250213171647](https://github.com/user-attachments/assets/e0372bb7-db0f-4ea5-ac6d-ffbe7ae15ba4)
+
 
