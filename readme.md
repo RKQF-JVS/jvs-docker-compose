@@ -72,7 +72,8 @@ docker-compose up -d
 
 ### 技术支撑群
 
-<img width="221" height="380" alt="微信图片_20250813093012_30" src="https://github.com/user-attachments/assets/6c444854-48a2-4a24-8d77-5a661d721cb2" />
+<img width="249" height="399" alt="微信图片_20250820104907_33" src="https://github.com/user-attachments/assets/b94f8331-2504-48b5-9673-2daebf631a84" />
+
 
 
 
