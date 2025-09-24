@@ -1,4 +1,4 @@
-# jvs框架快速部署
+<img width="235" height="359" alt="微信图片_20250924104037_78_235" src="https://github.com/user-attachments/assets/f1ef3458-9303-4b92-b7bc-5691d0822947" /># jvs框架快速部署
 
 
 ## 部署介绍：
@@ -71,7 +71,8 @@ docker-compose up -d
 ![](./img/20220109202836.png)
 
 ### 技术支撑群
-<img width="243" height="373" alt="微信图片_20250917115013_65_235" src="https://github.com/user-attachments/assets/68ca85ac-cee7-4812-93f5-fdd49a9bb787" />
+<img width="235" height="359" alt="微信图片_20250924104037_78_235" src="https://github.com/user-attachments/assets/38c5e724-cde6-471f-a021-e5409e101b0a" />
+
 
 
 
