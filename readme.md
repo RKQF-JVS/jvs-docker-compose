@@ -71,7 +71,7 @@ docker-compose up -d
 ![](./img/20220109202836.png)
 
 ### 技术支撑群
-<img width="207" height="340" alt="微信图片_20251203102839_148_235" src="https://github.com/user-attachments/assets/326f4b54-fe04-4af2-aff9-800028843024" />
+<img width="228" height="373" alt="微信图片_20251210140117_156_235" src="https://github.com/user-attachments/assets/54ea17e6-bf33-499d-bb06-8afa28b65134" />
 
 
 
